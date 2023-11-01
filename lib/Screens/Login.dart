@@ -16,7 +16,6 @@ class _LoginState extends State<Login> {
   TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    'First App';
     return Scaffold(
       appBar: AppBar(
         //leading: Icon(Icons.home),
