@@ -39,6 +39,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_form_builder: ^9.1.1
   another_flushbar: ^1.10.13
+  # ============DARI DRIVE===============
+  font_awesome_flutter: ^10.2.1
+  flutter_svg: ^1.0.3
+  dio: ^5.0.0
 
 dev_dependencies:
   flutter_test:
