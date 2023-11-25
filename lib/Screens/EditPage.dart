@@ -20,7 +20,7 @@ class EditPage extends StatefulWidget {
 
 class _EditPageState extends State<EditPage> {
   String baseurl =
-      "https://8fe4-103-136-57-66.ngrok-free.app/vigenesia/"; // ganti dengan ip address kamu / tempat kamu menyimpan backend
+      url; // ganti dengan ip address kamu / tempat kamu menyimpan backend
 
   var dio = Dio();
   Future<dynamic> putPost(String isi_motivasi, String ids) async {

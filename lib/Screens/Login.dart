@@ -6,6 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:vigenesia/Screens/MainScreen.dart';
 import 'package:vigenesia/Screens/Register.dart';
 import '/../Models/Login_Model.dart';
+import "package:vigenesia/Constant/const.dart";
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -14,14 +15,25 @@ class Login extends StatefulWidget {
   State<Login> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends State<Login> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
   String? nama;
+  String? iduser;
+
+  final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
 
   Future<LoginModels?> postLogin(String email, String password) async {
     var dio = Dio();
-    String baseurl = "https://8fe4-103-136-57-66.ngrok-free.app/vigenesia/";
+    String baseurl = url;
+    LoginModels? model;
 
     Map<String, dynamic> data = {"email": email, "password": password};
+    print("$baseurl/api/login");
 
     try {
       final Response = await dio.post("$baseurl/api/login/",
@@ -42,6 +54,7 @@ class _LoginState extends State<Login> {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +65,7 @@ class _LoginState extends State<Login> {
       body: SingleChildScrollView(
         child: SafeArea(
             child: Container(
-                color: Colors.redAccent,
+                // color: Colors.redAccent,
                 height: MediaQuery.of(context).size.height,
                 child: Center(
                   child: Column(
@@ -73,10 +86,17 @@ class _LoginState extends State<Login> {
                               children: [
                                 FormBuilderTextField(
                                   name: "email",
+                                  cursorColor: Colors.red,
                                   controller: emailController,
                                   decoration: InputDecoration(
                                       contentPadding: EdgeInsets.only(left: 10),
-                                      border: OutlineInputBorder(),
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(18.0),
+                                        borderSide:
+                                            BorderSide(color: Colors.red),
+                                      ),
+                                      labelStyle: TextStyle(color: Colors.red),
                                       labelText: "Email"),
                                 ),
                                 // ============ TEXT BOX PASWORD ================
@@ -87,10 +107,17 @@ class _LoginState extends State<Login> {
                                   obscureText: true,
                                   name: "Password",
                                   controller: passwordController,
+                                  cursorColor: Colors.red,
                                   decoration: InputDecoration(
                                       contentPadding: EdgeInsets.only(left: 10),
-                                      border: OutlineInputBorder(),
-                                      labelText: "Password"),
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(18.0),
+                                        borderSide: BorderSide(
+                                            color: Colors.red, width: 0.0),
+                                      ),
+                                      labelText: "Password",
+                                      labelStyle: TextStyle(color: Colors.red)),
                                 ),
                                 // ============ TEXT No Account ================
                                 SizedBox(
@@ -127,6 +154,16 @@ class _LoginState extends State<Login> {
                                 Container(
                                   width: MediaQuery.of(context).size.width,
                                   child: ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStatePropertyAll(
+                                                Colors.red),
+                                        shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(18.0),
+                                        ))),
                                     onPressed: () async {
                                       await postLogin(emailController.text,
                                               passwordController.text)
@@ -134,7 +171,7 @@ class _LoginState extends State<Login> {
                                                 if (value != null)
                                                   {
                                                     setState(() {
-                                                      nama = value.data?.nama;
+                                                      nama = value.data!.nama;
                                                       Navigator.pushReplacement(
                                                           context,
                                                           new MaterialPageRoute(
