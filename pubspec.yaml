@@ -38,7 +38,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_form_builder: ^9.1.1
-  another_flushbar: ^1.10.13
+  another_flushbar: ^1.10.25
   # ============DARI DRIVE===============
   font_awesome_flutter: ^10.2.1
   flutter_svg: ^1.0.3
@@ -47,6 +47,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^1.0.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

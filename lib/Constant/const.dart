@@ -1,1 +1,1 @@
-String url = "https://7f5b-118-99-107-108.ngrok-free.app/vigenesia/";
+String url = "https://131c-103-136-57-79.ngrok-free.app/vigenesia";

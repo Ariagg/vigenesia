@@ -2,6 +2,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:vigenesia/Constant/const.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  String baseurl = "https://7f5b-118-99-107-108.ngrok-free.app/vigenesia/";
+  String baseurl = url;
 
   Future postRegister(
       String name, String profesi, String email, String password) async {

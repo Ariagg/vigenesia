@@ -68,6 +68,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "flutter_lints",
+      "rootUri": "file:///C:/Users/AQsha/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-1.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_svg",
       "rootUri": "file:///C:/Users/AQsha/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_svg-1.1.6",
       "packageUri": "lib/",
@@ -94,6 +100,12 @@
     {
       "name": "intl",
       "rootUri": "file:///C:/Users/AQsha/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.18.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "lints",
+      "rootUri": "file:///C:/Users/AQsha/AppData/Local/Pub/Cache/hosted/pub.dev/lints-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -212,7 +224,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2023-11-25T14:47:20.349088Z",
+  "generated": "2023-12-09T06:02:29.738558Z",
   "generator": "pub",
   "generatorVersion": "3.1.3"
 }
