@@ -8,7 +8,7 @@ class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
 
   @override
-  State<Register> createState() => _RegisterState();
+  _RegisterState createState() => _RegisterState();
 }
 
 class _RegisterState extends State<Register> {
@@ -26,14 +26,14 @@ class _RegisterState extends State<Register> {
     };
 
     try {
-      final Response = await dio.post("$baseurl/api/registrasi/",
+      final response = await dio.post("$baseurl/api/registrasi",
           data: data,
           options: Options(headers: {'cotent-type': 'application/json'}));
 
-      print("Respon -> ${Response.data} + ${Response.statusCode}");
+      print("Respon -> ${response.data} + ${response.statusCode}");
 
-      if (Response.statusCode == 200) {
-        return Response.data;
+      if (response.statusCode == 200) {
+        return response.data;
       }
     } catch (e) {
       print("Failed To Load $e");

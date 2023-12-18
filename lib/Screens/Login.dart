@@ -9,10 +9,9 @@ import '/../Models/Login_Model.dart';
 import "package:vigenesia/Constant/const.dart";
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
-
+  Login({Key? key}) : super(key: key);
   @override
-  State<Login> createState() => _LoginState();
+  _LoginState createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> with WidgetsBindingObserver {
@@ -36,20 +35,20 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
     print("$baseurl/api/login");
 
     try {
-      final Response = await dio.post("$baseurl/api/login/",
+      final response = await dio.post("$baseurl/api/login/",
           data: data,
           options: Options(headers: {'cotent-type': 'application/json'}));
 
-      print("Respon -> ${Response.data} + ${Response.statusCode}");
+      print("Respon -> ${response.data} + ${response.statusCode}");
 
-      if (Response.statusCode == 200) {
-        final loginModel = LoginModels.fromJson(Response.data);
-        return loginModel;
+      if (response.statusCode == 200) {
+        model = LoginModels.fromJson(response.data);
       }
     } catch (e) {
       print("Failed To Load $e");
     }
-    return null;
+
+    return model;
   }
 
   TextEditingController emailController = TextEditingController();
@@ -172,14 +171,18 @@ class _LoginState extends State<Login> with WidgetsBindingObserver {
                                                   {
                                                     setState(() {
                                                       nama = value.data!.nama;
+                                                      iduser =
+                                                          value.data!.iduser;
                                                       Navigator.pushReplacement(
                                                           context,
                                                           new MaterialPageRoute(
                                                               builder: (BuildContext
                                                                       context) =>
-                                                                  new MainScreen(
+                                                                  new MainScreens(
                                                                       nama:
-                                                                          nama!)));
+                                                                          nama!,
+                                                                      iduser:
+                                                                          iduser!)));
                                                     })
                                                   }
                                                 else if (value == null)

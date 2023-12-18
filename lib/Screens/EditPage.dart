@@ -10,8 +10,8 @@ import '/../Models/Motivasi_Model.dart';
 
 class EditPage extends StatefulWidget {
   final String? id;
-  final String? isi_motivasi;
-  const EditPage({Key? key, this.id, this.isi_motivasi}) : super(key: key);
+  final String? isiMotivasi;
+  const EditPage({Key? key, this.id, this.isiMotivasi}) : super(key: key);
 
   @override
   _EditPageState createState() => _EditPageState();
@@ -22,8 +22,8 @@ class _EditPageState extends State<EditPage> {
       url; // ganti dengan ip address kamu / tempat kamu menyimpan backend
 
   var dio = Dio();
-  Future<dynamic> putPost(String isi_motivasi, String ids) async {
-    Map<String, dynamic> data = {"isi_motivasi": isi_motivasi, "id": ids};
+  Future<dynamic> put(String isiMotivasi, String id) async {
+    Map<String, dynamic> data = {"isi_motivasi": isiMotivasi, "id": id};
     var response = await dio.put('$baseurl/api/dev/PUTmotivasi',
         data: data,
         options: Options(
@@ -51,7 +51,7 @@ class _EditPageState extends State<EditPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("${widget.isi_motivasi}"),
+                Text("${widget.isiMotivasi}"),
                 SizedBox(
                   height: 20,
                 ),
@@ -69,7 +69,7 @@ class _EditPageState extends State<EditPage> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      putPost(isiMotivasiC.text, widget.id.toString())
+                      put(isiMotivasiC.text, widget.id.toString())
                           .then((value) => {
                                 if (value != null)
                                   {

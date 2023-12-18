@@ -10,35 +10,37 @@ import 'package:vigenesia/Screens/Login.dart';
 
 import '../Models/Motivasi_Model.dart';
 
-class MainScreen extends StatefulWidget {
+class MainScreens extends StatefulWidget {
   final String? nama;
   final String? iduser;
 
-  const MainScreen({Key? key, this.nama, this.iduser}) : super(key: key);
+  const MainScreens({Key? key, this.nama, this.iduser}) : super(key: key);
 
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenState extends State<MainScreens> {
   String baseurl = url;
+
   String? id;
   var dio = Dio();
   TextEditingController titleController = TextEditingController();
 
-  Future<dynamic> sendMotivasi(String isi) async {
+  Future<dynamic> sendMotivasi(String Motivasi) async {
     Map<String, dynamic> body = {
-      "isi_motivasi": isi,
+      "isi_motivasi": Motivasi,
       "iduser": widget.iduser ?? ''
     };
 
     try {
-      Response response = await dio.post("$baseurl/api/dev/POSTmotivasi",
+      final response = await dio.post("$baseurl/api/dev/POSTmotivasi",
           data: body,
           options: Options(
             contentType: Headers.formUrlEncodedContentType,
-            validateStatus: (status) => true,
+            //validateStatus: (status) => true,
           ));
+
       print("Respon -> ${response.data} + ${response.statusCode}");
       return response;
     } catch (e) {
@@ -46,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-  // List<MotivasiModel> listproduk = [];
+  List<MotivasiModel> listproduk = [];
 
   Future<List<MotivasiModel>> getData() async {
     var response = await dio.get('$baseurl/api/Get_motivasi/');
@@ -71,16 +73,14 @@ class _MainScreenState extends State<MainScreen> {
         options: Options(
             contentType: Headers.formUrlEncodedContentType,
             headers: {"Content-type": "application/json"}));
-
-    print(" ${response.data}");
-
+    print("${response.data}");
     var resbody = jsonDecode(response.data);
     return resbody;
   }
 
   Future<void> _getData() async {
     setState(() {
-      getData();
+      _getData();
     });
   }
 
@@ -157,7 +157,7 @@ class _MainScreenState extends State<MainScreen> {
                                                 FlushbarPosition.TOP,
                                           ).show(context)
                                         },
-                                      getData(),
+                                      _getData(),
                                       print("Sukses"),
                                     });
                           },
@@ -195,8 +195,7 @@ class _MainScreenState extends State<MainScreen> {
                                                 TextButton(
                                                   child: Icon(Icons.settings),
                                                   onPressed: () {
-                                                    String id;
-                                                    String isi_motivasi;
+                                                    //String id;
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
@@ -204,8 +203,8 @@ class _MainScreenState extends State<MainScreen> {
                                                                   context) =>
                                                               EditPage(
                                                                   id: item.id,
-                                                                  isi_motivasi:
-                                                                      item.isiMotivasi),
+                                                                  isiMotivasi: item
+                                                                      .isiMotivasi),
                                                         ));
                                                   },
                                                 ),
